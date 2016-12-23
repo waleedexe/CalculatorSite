@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/App/app.module.js"></script>
+    <script src="~/App/calc.controller.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div ng-app="app" ng-controller="CalcController as vm" class="container-fluid">
+        <section class="row">
+            <div class="col-sm-push-2 col-sm-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Calculator</div>
+                    <div class="panel-body">
+
+                        <form name="calcForm">
+                            <div class="form">
+                                <input type="text" ng-model="vm.calcModel.FirstNumber" class="form-control">
+                                <input type="text" ng-model="vm.calcModel.SecondNumber" class="form-control">
+                                <button type="button" class="btn btn-default" ng-click="vm.calculate()">Calculate</button>
+                            </div>
+                        </form>
+
+                        <div ng-show="vm.calcModel.Errors.length>0" class="alert alert-danger">
+                            <ul>
+                                <li ng-repeat="err in vm.calcModel.Errors track by $index">{{err}}</li>
+                            </ul>
+                        </div>
+                        <strong>{{vm.calcModel.Result}}</strong>
+
+                        <section>
+                            <div>
+                                <button type="button" class="btn btn-default" ng-click="vm.getLogs()">Get Logs</button>
+                            </div>
+                            <ul ng-show="vm.logs.length > 0">
+                                <li ng-repeat="log in vm.logs track by $index">{{log}}</li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</body>
+</html>
